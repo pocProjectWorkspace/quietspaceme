@@ -1,0 +1,219 @@
+/* CSS Variables for the Quiet System */
+:root {
+    --bg-color: #F5F2EB; /* Soft sand/beige */
+    --text-color: #5C5855; /* Muted charcoal */
+    --text-light: #8A8580; /* Lighter grey for secondary text */
+    --btn-bg: #E6E1D6;
+    --btn-hover: #DCD6C9;
+    
+    --font-heading: 'Lora', serif;
+    --font-body: 'Lora', serif; /* Using serif for body for a "book/letter" feel */
+    --font-ui: 'Work Sans', sans-serif; /* Only for small labels/buttons */
+
+    --spacing-unit: 2rem;
+    --section-gap: 15vh;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 18px; /* Slightly larger base size for readability */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Layout Utilities */
+main {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+section {
+    padding: var(--spacing-unit);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.full-height {
+    min-height: 100vh;
+}
+
+.content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.content-narrow {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+}
+
+.content-wide {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+}
+
+/* Typography */
+p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.hero-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #454240; /* Slightly darker for presence */
+}
+
+@media (min-width: 768px) {
+    .hero-text {
+        font-size: 1.8rem;
+    }
+    p {
+        font-size: 1.25rem;
+    }
+}
+
+/* Specific Section Styles */
+
+/* 1. Landing */
+#landing {
+    align-items: center;
+}
+
+/* 2. Definition */
+#definition p {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* 3. Anti-Definition */
+.boundary-box {
+    border-left: 2px solid rgba(0,0,0,0.05); /* Very subtle line */
+    padding-left: 2rem;
+    text-align: left;
+}
+
+.boundary-box p {
+    margin-bottom: 1.5rem;
+}
+
+/* 5. Founder's Note */
+#founders-note {
+    text-align: left;
+}
+
+.note-container p {
+    margin-bottom: 2.5rem;
+    font-size: 1.35rem; /* Slightly larger reading text */
+    line-height: 1.9;
+}
+
+/* 6. Privacy */
+.section-label {
+    font-family: var(--font-ui);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    margin-bottom: 3rem;
+    color: var(--text-light);
+}
+
+/* Buttons */
+button, .btn-subtle, .btn-enter {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    transition: all 0.6s ease;
+    text-decoration: none;
+    color: var(--text-color);
+    letter-spacing: 0.05em;
+}
+
+.btn-subtle {
+    border: 1px solid transparent;
+    opacity: 0.7;
+}
+
+.btn-subtle:hover {
+    opacity: 1;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.btn-enter {
+    background-color: var(--btn-bg);
+}
+
+.btn-enter:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px); /* Very subtle lift */
+}
+
+/* Footer */
+footer {
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInAnimation 2s ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
