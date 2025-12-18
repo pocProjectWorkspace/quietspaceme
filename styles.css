@@ -1,21 +1,27 @@
 /* CSS Variables for the Quiet System */
 :root {
-    --bg-color: #F5F2EB; /* Soft sand/beige */
-    --text-color: #5C5855; /* Muted charcoal */
-    --text-light: #8A8580; /* Lighter grey for secondary text */
+    --bg-color: #F5F2EB;
+    --text-color: #5C5855;
+    --text-light: #8A8580;
     --btn-bg: #E6E1D6;
     --btn-hover: #DCD6C9;
-    
+
     --font-heading: 'Lora', serif;
-    --font-body: 'Lora', serif; /* Using serif for body for a "book/letter" feel */
-    --font-ui: 'Work Sans', sans-serif; /* Only for small labels/buttons */
+    --font-body: 'Lora', serif;
+    --font-ui: 'Work Sans', sans-serif;
 
     --spacing-unit: 2rem;
     --section-gap: 15vh;
+
+    /* Animation Timing */
+    --breathe-cycle: 6s;
+    --float-cycle: 5s;
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -23,7 +29,8 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 18px; /* Slightly larger base size for readability */
+    font-size: 18px;
+    /* Slightly larger base size for readability */
 }
 
 body {
@@ -59,7 +66,15 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    justify-content: center;
     gap: 3rem;
+}
+
+.anim-wrapper {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .content-narrow {
@@ -87,13 +102,15 @@ p {
     font-size: 1.5rem;
     line-height: 1.6;
     margin-bottom: 1rem;
-    color: #454240; /* Slightly darker for presence */
+    color: #454240;
+    /* Slightly darker for presence */
 }
 
 @media (min-width: 768px) {
     .hero-text {
         font-size: 1.8rem;
     }
+
     p {
         font-size: 1.25rem;
     }
@@ -110,7 +127,9 @@ p {
     width: 100px;
     height: auto;
     margin-bottom: 2rem;
-    opacity: 0.85; /* Soft appearance */
+    opacity: 0.9;
+    /* Gentle breathing effect */
+    animation: breathe var(--breathe-cycle) ease-in-out infinite;
 }
 
 /* 2. Definition */
@@ -121,7 +140,8 @@ p {
 
 /* 3. Anti-Definition */
 .boundary-box {
-    border-left: 2px solid rgba(0,0,0,0.05); /* Very subtle line */
+    border-left: 2px solid rgba(0, 0, 0, 0.05);
+    /* Very subtle line */
     padding-left: 2rem;
     text-align: left;
 }
@@ -137,7 +157,8 @@ p {
 
 .note-container p {
     margin-bottom: 2.5rem;
-    font-size: 1.35rem; /* Slightly larger reading text */
+    font-size: 1.35rem;
+    /* Slightly larger reading text */
     line-height: 1.9;
 }
 
@@ -152,7 +173,9 @@ p {
 }
 
 /* Buttons */
-button, .btn-subtle, .btn-enter {
+button,
+.btn-subtle,
+.btn-enter {
     background: none;
     border: none;
     cursor: pointer;
@@ -173,7 +196,7 @@ button, .btn-subtle, .btn-enter {
 
 .btn-subtle:hover {
     opacity: 1;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-enter {
@@ -182,7 +205,14 @@ button, .btn-subtle, .btn-enter {
 
 .btn-enter:hover {
     background-color: var(--btn-hover);
-    transform: translateY(-2px); /* Very subtle lift */
+    transform: translateY(-2px);
+    /* Very subtle lift */
+}
+
+/* Float Animation for CTA */
+.btn-subtle,
+.btn-enter {
+    animation: float var(--float-cycle) ease-in-out infinite;
 }
 
 /* Footer */
@@ -203,24 +233,88 @@ footer a {
 /* Animation Classes */
 .fade-in {
     opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInAnimation 2s ease-out forwards;
+    animation: steadyLift 2s ease-out forwards;
 }
 
+/* Staggering for landing items */
+.stagger-1 {
+    animation-delay: 0.2s;
+}
+
+.stagger-2 {
+    animation-delay: 1.2s;
+}
+
+.stagger-3 {
+    animation-delay: 2.4s;
+}
+
+.stagger-4 {
+    animation-delay: 3.0s;
+}
+
+/* Button */
+
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out, filter 1.5s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Keyframes */
+
 @keyframes fadeInAnimation {
+
+    /* Legacy backup */
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.fade-in-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+@keyframes breathe {
+
+    0%,
+    100% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
 }
 
-.fade-in-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes steadyLift {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+        filter: blur(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
