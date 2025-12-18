@@ -106,6 +106,13 @@ p {
     align-items: center;
 }
 
+.logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 2rem;
+    opacity: 0.85; /* Soft appearance */
+}
+
 /* 2. Definition */
 #definition p {
     font-style: italic;
